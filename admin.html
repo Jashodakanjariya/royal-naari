@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Naari | Executive Admin Suite</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="dark-theme">
+
+    <div class="admin-app">
+        <aside class="admin-sidebar">
+            <div class="sidebar-brand">
+                 <img src="images/logo.jpeg" alt="Royal Naari Logo" class="brand-logo-img">
+                <div class="brand-info">
+                    <h2>ROYAL NAARI</h2>
+                    <span>Admin Suite</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a class="nav-item active" data-view="dashboard">Dashboard</a>
+                <a class="nav-item" data-view="catalog">Jewellery Catalog</a>
+                <a class="nav-item" data-view="categories">Categories 🏷️</a>
+                <a class="nav-item" data-view="orders">Orders <span class="nav-badge" id="orderBadge">0</span></a>
+                <a class="nav-item" data-view="customers">Customers <span class="nav-badge" id="customerBadge" style="background:var(--primary); color:#FFFFFF; display:inline-block;">0</span></a>
+                <a href="index.html" class="nav-item store-link">Live Storefront 👑</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">👑</div>
+                    <div class="user-info">
+                        <strong>Queen Admin</strong>
+                        <small style="color: var(--primary);">Superuser</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="top-header">
+                <div class="header-search">
+                    <input type="text" id="adminSearchInput" placeholder="Search rings, jhumkas, watches...">
+                </div>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="toggleAddProductModal()">+ Add Jewellery Piece</button>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <div class="admin-view-panel active" id="viewDashboard">
+                    <section class="metrics-grid">
+                        <div class="metric-card gold-border">
+                            <div class="metric-icon gold-glow">₹</div>
+                            <div class="metric-info">
+                                <span class="label">TOTAL STORE REVENUE</span>
+                                <h3 id="statRevenue">₹0</h3>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon blue-glow">🛍️</div>
+                            <div class="metric-info">
+                                <span class="label">ORDERS PLACED</span>
+                                <h3 id="statOrders">0</h3>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon green-glow">👥</div>
+                            <div class="metric-info">
+                                <span class="label">REGISTERED CUSTOMERS</span>
+                                <h3 id="statCustomers">0</h3>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="admin-view-panel" id="viewCatalog">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <h3>Jewellery Catalog Manager (<span id="catalogCountHeader">0</span> Items)</h3>
+                                <p>Manage inventory, live pricing, and stock quantities</p>
+                            </div>
+                            <button class="btn-primary" onclick="toggleAddProductModal()">+ Add New Item</button>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Category</th>
+                                        <th>Sale Price (₹)</th>
+                                        <th>MRP (₹)</th>
+                                        <th>Stock Qty</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productsTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-view-panel" id="viewCategories">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <h3>Manage Store Categories</h3>
+                                <p>Add new categories and generate automated category codes</p>
+                            </div>
+                        </div>
+                        <div style="padding: 20px 0; max-width: 500px;">
+                            <div class="form-group" style="margin-bottom: 15px;">
+                                <label style="display:block; margin-bottom:5px; font-weight:600;">New Category Name</label>
+                                <input type="text" id="newCategoryNameInput" placeholder="e.g. Handbags or Anklets" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-dark);">
+                            </div>
+                            <button class="btn-primary" onclick="addNewCategory()">Generate Code & Save Category 🏷️</button>
+                            <div id="categoryResultMsg" style="margin-top: 12px; font-weight: 600;"></div>
+                        </div>
+                        <div class="table-wrapper" style="margin-top: 20px;">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Category Code</th>
+                                        <th>Category Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="categoriesTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-view-panel" id="viewOrders">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <h3>Customer Orders & Shipping Details</h3>
+                                <p>Verify customer names, phone numbers, addresses, and payment information</p>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID & Date</th>
+                                        <th>Customer Details</th>
+                                        <th>Items Ordered</th>
+                                        <th>Total & Payment</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-view-panel" id="viewCustomers">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <h3>Registered Customer Directory (<span id="customerCountHeader">0</span>)</h3>
+                                <p>Complete list of customer accounts created on your store</p>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer Name</th>
+                                        <th>Email Address</th>
+                                        <th>Registration Date</th>
+                                        <th>Account Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminCustomersTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="addProductModal" class="modal-overlay" onclick="closeModalOutside(event)">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="gold-text">Add New Jewellery Piece</h3>
+                <button class="close-modal" onclick="toggleAddProductModal()">&times;</button>
+            </div>
+            <form id="newProductForm" onsubmit="handleNewProductSubmit(event)">
+                <div class="form-group">
+                    <label>Product Title *</label>
+                    <input type="text" id="pTitle" required placeholder="e.g. Royal Zircon Ring">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="pCategory" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Image Path / URL *</label>
+                        <input type="text" id="pImg" required placeholder="images/rings/1.jpeg">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>MRP (₹) *</label>
+                        <input type="number" id="pOrigPrice" required placeholder="1299">
+                    </div>
+                    <div class="form-group">
+                        <label>Sale Price (₹) *</label>
+                        <input type="number" id="pSalePrice" required placeholder="599">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary full-width">Publish to Store</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

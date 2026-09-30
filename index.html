@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Royal Naari | Regal Imitation Jewelry & Kashmiri Jhumkas Online</title>
+    <meta name="description" content="Shop exquisite ethnic and contemporary imitation jewelry online at Royal Naari. Explore rings, kashmiri jhumkas, loose bracelets, watches, clutches, and statement necklaces at modern prices.">
+    <meta name="keywords" content="imitation jewelry online, kashmiri jhumkas, artificial rings, bridal necklaces, stylish watches, korean clutches, royal nari">
+    <meta name="author" content="Royal Nari">
+    
+    <!-- Open Graph / Social Media Sharing Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Royal Naari | Regal Imitation Jewelry">
+    <meta property="og:description" content="Discover stunning ethnic and contemporary imitation jewelry designed to make you shine on every occasion.">
+    <meta property="og:image" content="logo.jpeg">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-main">
+            <div class="brand-wrapper" onclick="switchView('home')" role="button" aria-label="Royal Naari Home">
+                <img src="images/logo.jpeg" alt="Royal Naari Logo - Be The Queen" class="brand-logo-img">
+                <div class="brand-text-group">
+                    <span class="brand-title">ROYAL NAARI</span>
+                    <span class="brand-subtitle">Be the queen</span>
+                </div>
+            </div>
+
+            <div class="header-search">
+                <input type="text" id="searchInput" placeholder="Search Rings, Jhumkas, Watches..." aria-label="Search products">
+                <button onclick="executeSearch()" aria-label="Search button">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Header Icons with Account Page Link -->
+            <div class="header-icons">
+                <button class="icon-btn" onclick="switchView('track')" title="Track Order">🚚</button>
+                <button class="icon-btn" onclick="switchView('orders')" title="My Orders">📦</button>
+                <button class="icon-btn" id="authIconBtn" onclick="switchView('account')" title="Account / Login">👤</button>
+                <button class="icon-btn" onclick="toggleCart()" title="Shopping Cart">
+                    🛍️ <span class="cart-badge" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Bar with Hover Dropdown Sub-categories -->
+        <nav class="nav-bar" aria-label="Main Navigation">
+             <a href="#" onclick="filterCategory('All'); return false;" style="color: var(--primary); font-weight: 700;">All Products</a>
+            <div class="nav-item-dropdown">
+                <a href="#" onclick="filterCategory('Rings'); return false;">Rings ▾</a>
+                <div class="sub-menu-box">
+                    <a href="#" onclick="filterCategory('Rings'); return false;">All Rings</a>
+                    <a href="#" onclick="filterSubCategory('Solitaire Rings'); return false;">Solitaire Rings</a>
+                    <a href="#" onclick="filterSubCategory('Zircon Bands'); return false;">Zircon Bands</a>
+                    <a href="#" onclick="filterSubCategory('Traditional Kundan Rings'); return false;">Traditional Kundan Rings</a>
+                </div>
+            </div>
+            <div class="nav-item-dropdown">
+                <a href="#" onclick="filterCategory('Earrings'); return false;">Kashmiri Jhumkas ▾</a>
+                <div class="sub-menu-box">
+                    <a href="#" onclick="filterCategory('Earrings'); return false;">All Earrings</a>
+                    <a href="#" onclick="filterSubCategory('Kashmiri Jhumkas'); return false;">Kashmiri Jhumkas</a>
+                    <a href="#" onclick="filterSubCategory('Chandbalis'); return false;">Chandbalis</a>
+                    <a href="#" onclick="filterSubCategory('Stud Earrings'); return false;">Stud Earrings</a>
+                </div>
+            </div>
+            <div class="nav-item-dropdown">
+                <a href="#" onclick="filterCategory('Bracelets'); return false;">Loose Bracelets ▾</a>
+                <div class="sub-menu-box">
+                    <a href="#" onclick="filterCategory('Bracelets'); return false;">All Bracelets</a>
+                    <a href="#" onclick="filterSubCategory('Loose Bracelets'); return false;">Loose Bracelets</a>
+                    <a href="#" onclick="filterSubCategory('Cuff Bangles'); return false;">Cuff Bangles</a>
+                    <a href="#" onclick="filterSubCategory('Charm Bracelets'); return false;">Charm Bracelets</a>
+                </div>
+            </div>
+            <div class="nav-item-dropdown">
+                <a href="#" onclick="filterCategory('Watches'); return false;">Watches ▾</a>
+                <div class="sub-menu-box">
+                    <a href="#" onclick="filterCategory('Watches'); return false;">All Watches</a>
+                    <a href="#" onclick="filterSubCategory('Rose Gold Analog'); return false;">Rose Gold Analog</a>
+                    <a href="#" onclick="filterSubCategory('Classic Silver'); return false;">Classic Silver</a>
+                    <a href="#" onclick="filterSubCategory('Luxury Stone-Set'); return false;">Luxury Stone-Set</a>
+                </div>
+            </div>
+            <div class="nav-item-dropdown">
+                <a href="#" onclick="filterCategory('Clutches'); return false;">Korean Clutches ▾</a>
+                <div class="sub-menu-box">
+                    <a href="#" onclick="filterCategory('Clutches'); return false;">All Clutches</a>
+                    <a href="#" onclick="filterSubCategory('Korean Party Clutches'); return false;">Korean Party Clutches</a>
+                    <a href="#" onclick="filterSubCategory('Embroidered Potlis'); return false;">Embroidered Potlis</a>
+                    <a href="#" onclick="filterSubCategory('Metallic Evening Bags'); return false;">Metallic Evening Bags</a>
+                </div>
+            </div>
+            <div class="nav-item-dropdown">
+                <a href="#" onclick="filterCategory('Necklace'); return false;">Necklaces ▾</a>
+                <div class="sub-menu-box">
+                    <a href="#" onclick="filterCategory('Necklace'); return false;">All Necklaces</a>
+                    <a href="#" onclick="filterSubCategory('Layered Statement'); return false;">Layered Statement</a>
+                    <a href="#" onclick="filterSubCategory('Chokers'); return false;">Chokers</a>
+                    <a href="#" onclick="filterSubCategory('Long Haram Sets'); return false;">Long Haram Sets</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- VIEW 1: HOME PAGE -->
+    <div id="homeView" class="view-section active">
+        <!-- Hero section is now clean and fully responsive without broken margins -->
+        <section class="hero">
+            <h1>Royal Elegance, Modern Prices</h1>
+            <p>Explore exquisite ethnic and contemporary imitation jewelry designed to make you shine on every occasion.</p>
+            <button class="btn-primary" onclick="scrollToCatalog()">Shop New Collections</button>
+        </section>
+
+        <section class="categories-section" style="border-radius: 6px; margin-bottom: 40px;">
+            <h2 class="section-title">Shop By Category</h2>
+            <div class="cat-grid">
+                <a href="#catalog" class="cat-item" onclick="filterCategory('Rings'); return false;">
+                    <div class="cat-circle" style="background-image: url('images/rings/1.jpeg');" role="img" aria-label="Rings category"></div>
+                    <span>Rings</span>
+                </a>
+                <a href="#catalog" class="cat-item" onclick="filterCategory('Earrings'); return false;">
+                    <div class="cat-circle" style="background-image: url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=300&q=80');" role="img" aria-label="Kashmiri Earrings category"></div>
+                    <span>Kashmiri Earrings</span>
+                </a>
+                <a href="#catalog" class="cat-item" onclick="filterCategory('Bracelets'); return false;">
+                    <div class="cat-circle" style="background-image: url('https://images.unsplash.com/photo-1611591475871-2ee392297fbc?auto=format&fit=crop&w=300&q=80');" role="img" aria-label="Loose Bracelets category"></div>
+                    <span>Loose Bracelets</span>
+                </a>
+                <a href="#catalog" class="cat-item" onclick="filterCategory('Watches'); return false;">
+                    <div class="cat-circle" style="background-image: url('images/watches/1.jpeg');" role="img" aria-label="Watches category"></div>
+                    <span>Watches</span>
+                </a>
+                <a href="#catalog" class="cat-item" onclick="filterCategory('Clutches'); return false;">
+                    <div class="cat-circle" style="background-image: url('images/xp4k1_512.jpg');" role="img" aria-label="Korean Clutches category"></div>
+                    <span>Korean Clutches</span>
+                </a>
+                <a href="#catalog" class="cat-item" onclick="filterCategory('Necklace'); return false;">
+                   <div class="cat-circle" style="background-image: url('images/soft necklace/1.jpeg');" role="img" aria-label="Necklace category"></div>
+                    <span>Necklace</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Royal Naari Brand Features Section -->
+        <section class="brand-features-section">
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-badge-icon">
+                       <span class="feature-symbol">✨</span>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Lightweight <br>Comfort</h4>
+                        <p>Designed for effortless, all-day royal wear</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-badge-icon">
+                       <span class="feature-symbol">🌿</span>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Skin Friendly <br>Materials</h4>
+                        <p>Hypoallergenic brass alloy, safe for sensitive skin</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-badge-icon">
+                       <span class="feature-symbol">👑</span>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Unique Royal <br>Designs</h4>
+                        <p>Handcrafted motifs inspired by regal heritage</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="catalog-section" id="catalog">
+            <h2 class="section-title" id="catalogTitle" style="text-align: center;">Trending Masterpieces</h2>
+            <div class="product-grid" id="productGrid"></div>
+        </section>
+    </div>
+
+    <!-- VIEW: TRACK ORDER PAGE -->
+    <div id="trackView" class="view-section">
+        <div class="track-page-wrapper">
+            <div class="track-page-title">
+                <h2>Track Your Order</h2>
+                <p>Enter your Order ID or phone number to check live shipment status</p>
+            </div>
+            
+            <div class="track-search-box">
+                <div class="form-group-modern" style="flex: 1; margin: 0;">
+                    <input type="text" id="trackQueryInput" placeholder="e.g. RN-481920 or 9876543210">
+                </div>
+                <button class="btn-gateway-animated" style="width: auto; padding: 13px 30px; margin: 0;" onclick="handleOrderTracking()">Track Now 🔍</button>
+            </div>
+
+            <div id="trackResultContainer" class="track-result-container"></div>
+        </div>
+    </div>
+
+    <!-- VIEW 2: CHECKOUT PAGE -->
+    <div id="checkoutView" class="view-section">
+        <div class="checkout-page-wrapper">
+            <div class="checkout-page-title">
+                <h2>Secure Checkout</h2>
+                <p>Complete your shipping and prepaid payment details</p>
+            </div>
+
+            <div class="checkout-grid-layout">
+                <div class="checkout-main-form-box">
+                    <div class="checkout-step-title"><span>1</span> Shipping Information</div>
+                    
+                    <div class="form-group-modern">
+                        <label>Full Name *</label>
+                        <input type="text" id="chkName" placeholder="Priya Sharma">
+                        <small id="errorName" style="color: #d9534f; font-size: 0.75rem; display: none; margin-top: 4px;">This field is required</small>
+                    </div>
+
+                    <div class="form-group-modern">
+                        <label>Phone Number *</label>
+                        <input type="text" id="chkPhone" placeholder="9876543210">
+                        <small id="errorPhone" style="color: #d9534f; font-size: 0.75rem; display: none; margin-top: 4px;">This field is required</small>
+                    </div>
+
+                    <div class="form-group-modern">
+                        <label>Delivery Address & Pincode *</label>
+                        <textarea id="chkAddress" rows="3" placeholder="House No, Street, Landmark, City, Pincode"></textarea>
+                        <small id="errorAddress" style="color: #d9534f; font-size: 0.75rem; display: none; margin-top: 4px;">This field is required</small>
+                    </div>
+
+                    <div class="checkout-step-title" style="margin-top: 30px;"><span>2</span> Payment Method (Prepaid Only)</div>
+                    <div class="payment-cards-grid">
+                        <label class="payment-card-option selected">
+                            <input type="radio" name="payment" value="UPI (GPay / PhonePe / Paytm)" checked>
+                            <div class="payment-card-info">
+                                <strong>📱 UPI Apps</strong>
+                                <span>Google Pay, PhonePe, Paytm, BHIM</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <button class="btn-gateway-animated" style="margin-top: 25px;" onclick="completeOrder()">Place Order Securely 🔒</button>
+                </div>
+
+                <div class="checkout-summary-box">
+                    <h3>Order Summary</h3>
+                    <div id="checkoutItemsList" class="checkout-items-scroll"></div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row"><span>Subtotal</span><span id="chkSubtotal">₹0</span></div>
+                    <div class="summary-row"><span>Shipping</span><span style="color: #4B5E26; font-weight: 700;">FREE</span></div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total-row"><span>Total Amount</span><span id="chkTotal">₹0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 3: MY ORDERS PAGE -->
+    <div id="ordersView" class="view-section">
+        <div class="orders-page-wrapper">
+            <div class="orders-page-title">
+                <h2>My Order History</h2>
+                <p>Track your previous royal purchases and deliveries</p>
+            </div>
+            <div id="ordersContainer" class="orders-container-grid"></div>
+        </div>
+    </div>
+
+    <!-- VIEW 4: DEDICATED ACCOUNT / LOGIN / REGISTER PAGE -->
+    <div id="accountView" class="view-section">
+        <div class="auth-page-wrapper">
+            <div class="auth-card-container">
+                <div class="auth-header-ribbon">
+                    <h2>Welcome to Royal Naari</h2>
+                    <p>Enter your realm to manage orders & wishlist</p>
+                </div>
+                
+                <div class="auth-tabs-modern">
+                    <button class="auth-tab-btn active" id="loginTabBtn" onclick="switchAuthTab('login')">Sign In</button>
+                    <button class="auth-tab-btn" id="registerTabBtn" onclick="switchAuthTab('register')">Register</button>
+                </div>
+
+                <div class="auth-form-body">
+                    <div id="loginFormContent" class="form-pane active-pane">
+                        <div class="form-group-modern">
+                            <label>Email Address</label>
+                            <input type="email" id="loginEmail" placeholder="queen@royalnaari.com">
+                        </div>
+                        <div class="form-group-modern">
+                            <label>Password</label>
+                            <input type="password" id="loginPass" placeholder="••••••••">
+                        </div>
+                        <button class="btn-gateway-animated" onclick="handleLogin()">Sign In to Your Account ✨</button>
+                    </div>
+
+                    <div id="registerFormContent" class="form-pane" style="display: none;">
+                        <div class="form-group-modern">
+                            <label>Full Name</label>
+                            <input type="text" id="regName" placeholder="Priya Sharma">
+                        </div>
+                        <div class="form-group-modern">
+                            <label>Email Address</label>
+                            <input type="email" id="regEmail" placeholder="queen@royalnaari.com">
+                        </div>
+                        <div class="form-group-modern">
+                            <label>Create Password</label>
+                            <input type="password" id="regPass" placeholder="••••••••">
+                        </div>
+                        <button class="btn-gateway-animated" onclick="handleRegister()">Create Royal Account 👑</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide-Out Cart Drawer -->
+    <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Shopping Bag</h3>
+            <button class="icon-btn" onclick="toggleCart()" style="font-size: 1rem;">✕</button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <p style="color: #777; text-align: center; margin-top: 40px;">Your bag is currently empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Subtotal:</span>
+                <span id="cartSubtotalDrawer">₹0</span>
+            </div>
+            <button class="btn-primary" style="width: 100%; text-transform: uppercase;" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="modal-overlay" id="quickViewModal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModalForce()">✕</button>
+            <div class="modal-img" id="modalImg"></div>
+            <div class="modal-details">
+                <h2 id="modalTitle" style="color: var(--text-dark); margin-bottom: 10px;"></h2>
+                <div class="price-box" style="margin-bottom: 15px;">
+                    <span class="current-price" id="modalPrice"></span>
+                    <span class="original-price" id="modalOriginal"></span>
+                </div>
+                <p style="color: var(--text-dark); font-size: 0.9rem; margin-bottom: 20px;">Skin-friendly high-grade brass alloy with premium gold polish. Keep away from water and perfume.</p>
+                <button class="btn-primary" id="modalAddToCart">Add To Bag</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="footer-brand" onclick="switchView('home')">
+                    <img src="images/logo.jpeg" alt="Royal Nari Logo" class="footer-logo-img">
+                    <span class="footer-tagline">Be the queen</span>
+                </div>
+                <p class="footer-about">Exquisite ethnic and contemporary imitation jewelry designed to make you shine on every occasion.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#" onclick="switchView('home'); return false;">Home</a></li>
+                    <li><a href="#" onclick="filterCategory('Rings'); return false;">Rings</a></li>
+                    <li><a href="#" onclick="filterCategory('Earrings'); return false;">Kashmiri Earrings</a></li>
+                    <li><a href="#" onclick="switchView('orders'); return false;">My Orders</a></li>
+                    <li><a href="#" onclick="switchView('track'); return false;">Track Order</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Policies</h4>
+                <ul>
+                    <li><a href="#" onclick="showCustomMessageModal('Shipping Policy', 'Standard delivery takes 3-5 business days across India with secure packaging.'); return false;">Safe Packaging & Shipping</a></li>
+                    <li><a href="#" onclick="showCustomMessageModal('Privacy Policy', 'Your personal data and payment records are safely encrypted and protected.'); return false;">Privacy Policy</a></li>
+                    <li><a href="#" onclick="showCustomMessageModal('Terms & Conditions', 'All purchases are subject to Royal Naari terms and quality guarantee policies.'); return false;">Terms and Conditions</a></li>
+                     <li><a href="#" onclick="showCustomMessageModal('No Exchange/No Return', 'All purchases are final. Due to hygiene and quality standards, we do not accept returns, exchanges, or provide refunds once an item is sold.'); return false;">No Exchange/No Return</a></li>
+
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <ul>
+                    <li>
+                        <a href="https://instagram.com/royal_naari_be_the_queen" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none;">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="insta-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#fdf497" />
+                                        <stop offset="5%" stop-color="#fdf497" />
+                                        <stop offset="45%" stop-color="#fd5949" />
+                                        <stop offset="60%" stop-color="#d6249f" />
+                                        <stop offset="90%" stop-color="#285AEB" />
+                                    </linearGradient>
+                                </defs>
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="url(#insta-gradient)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="url(#insta-gradient)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="url(#insta-gradient)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></line>
+                            </svg>
+                            <span style="color: #FFFFFF !important; font-weight: 500;">@royal_naari_be_the_queen</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Royal Nari Jewels. All Rights Reserved. Crafted for elegance.</p>
+        </div>
+    </footer>
+
+    <!-- Universal Dynamic Modal Popup -->
+    <div class="order-success-modal-overlay" id="orderSuccessModal">
+        <div class="order-success-card">
+            <div class="success-crown-badge">👑</div>
+            <h2 id="modalSuccessTitle">Order Placed Successfully!</h2>
+            <p id="modalSuccessDesc" style="line-height: 1.6; margin-bottom: 20px;">Thank you for shopping with <strong style="color: var(--primary);">Royal Naari</strong>.</p>
+            
+            <div class="order-id-display-box" id="modalIdBoxContainer">
+                <span>Order Tracking ID:</span>
+                <strong id="modalGeneratedOrderId">RN-000000</strong>
+            </div>
+
+            <div class="success-modal-actions" id="modalActionButtonsContainer">
+                <button class="btn-primary" id="modalPrimaryBtn" onclick="closeSuccessModalAndTrack()">Track Order 🚚</button>
+                <button class="btn-outline-modal" id="modalSecondaryBtn" onclick="closeSuccessModalAndHome()">Back To Homepage 🏠</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
